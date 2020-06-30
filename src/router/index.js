@@ -3,32 +3,37 @@ import VueRouter from 'vue-router'
 // 官方元件
 
 import Home from '@/components/HelloWorld'
-import Page from '@/components/page'
-import Todolist from '@/components/todo'
-import TableSort from '@/components/sort'
+import Page from '@/components/pages/page'
+import Todolist from '@/components/pages/todo'
+import TableSort from '@/components/pages/sort'
+import Navs from '@/components/pages/navs'
 // 自訂的分頁元件
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
+    linkActiveClass: 'active',
 	routes: [
         {
             name: '首頁',      // 元件呈現的名稱
-            path: '/index',   // 對應的虛擬路徑
+            path: '/',   // 對應的虛擬路徑
             component: Home,   // 對應的元件
         },{
-            name: '單元作業',
             path: '/page',
-            component: Page,
+            // component: Page,
+            components: {
+                default: Page,
+                navs: Navs
+            },
             children: [
                 {
-                    name: 'todo',
-                    path: '/page/todo',
+                    name: '待辦事項',
+                    path: '',
                     component: Todolist
                 },
                 {
-                    name: 'sort',
-                    path: '/page/sort',
+                    name: '表格排序',
+                    path: 'sort',
                     component: TableSort
                 }
             ]
