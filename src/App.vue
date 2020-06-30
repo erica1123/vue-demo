@@ -5,7 +5,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="/index">首頁</router-link>
+            <router-link class="nav-link" to="/" exact>首頁</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/page">單元作業</router-link>

@@ -3,7 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios' // 主要 AJAX 套件
+import VueAxios from 'vue-axios' // 將它轉為 Vue 的套件
 
+Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

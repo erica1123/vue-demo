@@ -6,17 +6,16 @@ import Home from '@/components/HelloWorld'
 import Page from '@/components/pages/page'
 import Todolist from '@/components/pages/todo'
 import TableSort from '@/components/pages/sort'
-import Navs from '@/components/pages/navs'
 // 自訂的分頁元件
 
-Vue.use(VueRouter)
 
+Vue.use(VueRouter)
 export default new VueRouter({
     linkActiveClass: 'active',
 	routes: [
         {
             name: '首頁',      // 元件呈現的名稱
-            path: '/index',   // 對應的虛擬路徑
+            path: '/',   // 對應的虛擬路徑
             component: Home,   // 對應的元件
         },{
             path: '/page',
@@ -24,7 +23,7 @@ export default new VueRouter({
             children: [
                 {
                     name: '待辦事項',
-                    path: 'todo',
+                    path: '',
                     component: Todolist
                 },
                 {

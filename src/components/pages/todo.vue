@@ -34,8 +34,11 @@
         </ul>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item" v-for="item in filterTodo" :key="item.id">
-          <div class="d-flex">
+        <li class="list-group-item"
+          v-for="item in filterTodo"
+          :key="item.id"
+          @dblclick="editTodo(item)">
+          <div class="d-flex" v-if="cacheTodo.id !== item.id">
             <div class="form-check">
               <input type="checkbox" class="form-check-input" 
                 :id="item.id"
@@ -48,7 +51,11 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control"
+            v-if="cacheTodo.id === item.id"
+            v-model="cacheTitle"
+            @keyup.enter="doneEdit(item)"
+            @keyup.esc="cancelEdit">
         </li>
       </ul>
       <div class="card-footer d-flex justify-content-between">
@@ -71,7 +78,9 @@ export default {
         id: 0,
         completed: false
       }],
-      status: 'all'
+      status: 'all',
+      cacheTodo: [],
+      cacheTitle: ''
     }
   },
   methods: {
@@ -94,6 +103,18 @@ export default {
     },
     cleanTodo (){
       this.todos = []
+    },
+    editTodo (todo){
+      this.cacheTodo = todo
+      this.cacheTitle = todo.title
+    },
+    doneEdit (todo){
+      todo.title = this.cacheTitle
+      this.cacheTodo = []
+      this.cacheTitle = ''
+    },
+    cancelEdit (){
+      this.cacheTodo = []
     }
   },
   computed: {
