@@ -16,19 +16,15 @@ export default new VueRouter({
 	routes: [
         {
             name: '首頁',      // 元件呈現的名稱
-            path: '/',   // 對應的虛擬路徑
+            path: '/index',   // 對應的虛擬路徑
             component: Home,   // 對應的元件
         },{
             path: '/page',
-            // component: Page,
-            components: {
-                default: Page,
-                navs: Navs
-            },
+            component: Page,
             children: [
                 {
                     name: '待辦事項',
-                    path: '',
+                    path: 'todo',
                     component: Todolist
                 },
                 {

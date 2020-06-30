@@ -48,6 +48,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <input type="text" class="form-control">
         </li>
       </ul>
       <div class="card-footer d-flex justify-content-between">

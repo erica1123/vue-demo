@@ -1,13 +1,18 @@
 <template>
   <div class="page">
-    <router-view name="navs"></router-view>
+    <Navs/>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Navs from './navs'
+
 export default {
   name: 'page',
+  components: {
+    Navs
+  },
   data () {
     return {
     }
