@@ -6,6 +6,15 @@ import router from './router'
 import axios from 'axios' // 主要 AJAX 套件
 import VueAxios from 'vue-axios' // 將它轉為 Vue 的套件
 
+// FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faAngleUp, faStar)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
