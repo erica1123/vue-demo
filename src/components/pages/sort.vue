@@ -10,7 +10,8 @@
             <span class="icon"
 							:class="{ 'inverse': !isReverse }"
 							v-if="sortItem == 'price'">
-							<font-awesome-icon icon="angle-up" />
+							<!-- <font-awesome-icon icon="angle-up" /> -->
+              <i class="fas fa-angle-up"></i>
 						</span>
           </th>
           <th class="click"
@@ -19,7 +20,8 @@
             <span class="icon"
 							:class="{ 'inverse': !isReverse }"
 							v-if="sortItem == 'expiryDate'">
-							<font-awesome-icon icon="angle-up" />
+							<!-- <font-awesome-icon icon="angle-up" /> -->
+              <i class="fas fa-angle-up"></i>
 						</span>
           </th>
 					<th>到期日</th>

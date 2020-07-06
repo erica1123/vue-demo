@@ -33,5 +33,7 @@ export default {
 </script>
 
 <style lang="sass">
-    @import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap'
+.container
+  max-width: 800px
 </style>

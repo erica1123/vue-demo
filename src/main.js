@@ -10,12 +10,16 @@ import VueAxios from 'vue-axios' // 將它轉為 Vue 的套件
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
+import { dom } from '@fortawesome/fontawesome-svg-core'
 
-library.add(faAngleUp, faStar)
+library.add(faAngleUp, fasStar, farStar)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+dom.watch()
 
 Vue.use(VueAxios, axios)
+// Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
