@@ -18,7 +18,6 @@ export default {
   created (){
     let cors = 'https://cors-anywhere.herokuapp.com/'
     let clientID = 'L39YcRzMRt9ZweiuAsM7Pjq_jiY-N_PE5KMvlnV1sS0'
-    let id = '812193ef71ca946e361ed541979a0cfd91e9419a19235fd05f51ea14233f020a'
     let api = 'https://api.unsplash.com/search/photos'
     let url = api + '?query=cats' + '&client_id=' + clientID
 
