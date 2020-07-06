@@ -76,8 +76,9 @@ export default {
     }
   },
   created (){
+    let cors = 'https://cors-anywhere.herokuapp.com/'
     let api = 'http://opendata2.epa.gov.tw/AQI.json'
-    this.axios.get(api).then( res => {
+    this.axios.get(cors + api).then( res => {
         this.data.push(...res.data)
     })
   },
