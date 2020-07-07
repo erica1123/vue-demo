@@ -13,6 +13,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/aqi">空氣品質指標</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/product">產品頁</router-link>
+          </li>
         </ul>
       </nav>
 
@@ -32,8 +35,9 @@ export default {
 }
 </script>
 
-<style lang="sass">
-@import '~bootstrap/scss/bootstrap'
-.container
-  max-width: 800px
+<style lang="scss">
+@import './assets/all';
+// .container {
+//   max-width: 800px;
+// }
 </style>
