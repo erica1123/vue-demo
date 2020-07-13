@@ -19,8 +19,11 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 dom.watch()
 
 Vue.use(VueAxios, axios)
-// Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios
+// axios.defaults.withCredentials = true
 Vue.config.productionTip = false
+
+
 
 /* eslint-disable no-new */
 new Vue({

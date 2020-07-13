@@ -22,8 +22,10 @@ export default {
     let url = api + '?query=cats' + '&client_id=' + clientID
 
     this.axios.get(url).then( res => {
-        this.data.push(res.data.results[5].urls.regular)
-        // console.log(res)
+        this.data.push(res.data.results[6].urls.regular)
+        console.log(res)
+    }).catch( err => {
+      console.log(err)
     })
   },
 }

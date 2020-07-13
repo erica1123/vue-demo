@@ -8,6 +8,7 @@ import Todolist from '@/components/pages/todo'
 import TableSort from '@/components/pages/sort'
 import AQI from '@/components/pages/aqi'
 import Prod from '@/components/pages/prod'
+import Login from '@/components/pages/login'
 // 自訂的分頁元件
 
 
@@ -38,6 +39,10 @@ export default new VueRouter({
             name: '空氣品質監控',
             path: '/aqi',
             component: AQI
+        },{
+            name: '登入',
+            path: '/login',
+            component: Login
         },{
             name: '產品頁',
             path: '/product',

@@ -16,6 +16,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/product">產品頁</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/login">登入頁</router-link>
+          </li>
         </ul>
       </nav>
 
