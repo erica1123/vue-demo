@@ -30,35 +30,41 @@ export default {
         username: '',
         password: '' 
       },
-      msg: '狀態訊息'
+      status: JSON.parse(localStorage.getItem('status')) || '狀態訊息',
+      msg: ''
     }
+  },
+  created (){
+    this.msg = this.status
   },
   methods: {
     signin() {
-      let api = process.env.API_PATH
-      let url = `${api}/admin/signin`
+      const api = process.env.API_PATH
+      const url = `${api}/admin/signin`
       const vm = this
-
+  
       this.axios.post( url, vm.user ).then( res => {
         if (res.data.success) {
-          // vm.$router.push('/')
+          vm.$router.push('/product')
           vm.msg = res.data.message
+          localStorage.setItem('status', JSON.stringify(vm.msg))
+        } else {
+          vm.msg = res.data.message
+        }
+      })
+    },
+    signout() {
+      const api = process.env.API_PATH
+      const url = `${api}/logout`
+      const vm = this
+      this.axios.post( url ).then( res => {
+        if (res.data.success) {
+          vm.msg = '未登入'
+          localStorage.setItem('status', JSON.stringify(vm.msg))
         }
       })
     }
   },
-  signout() {
-    let api = process.env.API_PATH
-      let url = `${api}/logout`
-      const vm = this
-
-      this.axios.post( url ).then( res => {
-        if (res.data.success) {
-          // vm.$router.push('/')
-          vm.msg = res.data.message
-        }
-      })
-  }
 }
 </script>
 

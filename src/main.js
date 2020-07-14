@@ -33,3 +33,25 @@ new Vue({
   router
 })
 
+router.beforeEach( (to, from, next) => {
+  // console.log( 'to', to, 'from', from, 'next', next)
+  if( to.meta.requireAuth ) {
+    
+    let api = process.env.API_PATH
+    let url = `${api}/api/user/check`
+
+    axios.post( url ).then( res => {
+      if (res.data.success) {
+        next()
+      } else {
+        alert('請先登入')
+        next({
+          path: '/login'
+        })
+      }
+    })
+  } else {
+    next()
+  }
+  
+})

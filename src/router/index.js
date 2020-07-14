@@ -17,6 +17,10 @@ export default new VueRouter({
     linkActiveClass: 'active',
 	routes: [
         {
+            path: '*',
+            redirect: 'login'
+        },
+        {
             name: '首頁',      // 元件呈現的名稱
             path: '/',   // 對應的虛擬路徑
             component: Home,   // 對應的元件
@@ -46,7 +50,8 @@ export default new VueRouter({
         },{
             name: '產品頁',
             path: '/product',
-            component: Prod
+            component: Prod,
+            meta: { requireAuth: true }, // 導航守衛
         }
         
     ]
