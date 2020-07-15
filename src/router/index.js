@@ -1,15 +1,24 @@
+// 官方元件
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// 官方元件
 
-import Home from '@/components/HelloWorld'
-import Page from '@/components/pages/page'
+// 自訂的分頁元件
+import Index from '@/components/HelloWorld'
+import Dashboard from '@/components/Dashboard'
+
+// 主選單
+import Home from '@/components/main/home'
+import Page from '@/components/main/page'
+import AQI from '@/components/main/aqi'
+import Login from '@/components/main/login'
+
+// 次選單
 import Todolist from '@/components/pages/todo'
 import TableSort from '@/components/pages/sort'
-import AQI from '@/components/pages/aqi'
-import Prod from '@/components/pages/prod'
-import Login from '@/components/pages/login'
-// 自訂的分頁元件
+
+// Dashboard
+import Prod from '@/components/dashboard/prod'
+
 
 
 Vue.use(VueRouter)
@@ -18,41 +27,52 @@ export default new VueRouter({
 	routes: [
         {
             path: '*',
-            redirect: 'login'
-        },
-        {
-            name: '首頁',      // 元件呈現的名稱
-            path: '/',   // 對應的虛擬路徑
-            component: Home,   // 對應的元件
+            redirect: '/login'
         },{
-            path: '/page',
-            component: Page,
+            // name: '儀表板',
+            path: '',
+            component: Dashboard,
+            // meta: { requireAuth: true }, // 導航守衛
             children: [
                 {
-                    name: '待辦事項',
-                    path: '',
-                    component: Todolist
-                },
-                {
-                    name: '表格排序',
-                    path: 'sort',
-                    component: TableSort
+                    name: '產品頁',
+                    path: '/admin',
+                    component: Prod,
+                    meta: { requireAuth: true }, // 導航守衛
                 }
             ]
         },{
-            name: '空氣品質監控',
-            path: '/aqi',
-            component: AQI
-        },{
-            name: '登入',
-            path: '/login',
-            component: Login
-        },{
-            name: '產品頁',
-            path: '/product',
-            component: Prod,
-            meta: { requireAuth: true }, // 導航守衛
-        }
-        
+            path: '/',
+            component: Index,
+            children: [
+                {
+                    name: '首頁',
+                    path: '/',
+                    component: Home,
+                },{
+                    path: '/page',
+                    component: Page,
+                    children: [
+                        {
+                            name: '待辦事項',
+                            path: '',
+                            component: Todolist
+                        },{
+                            name: '表格排序',
+                            path: 'sort',
+                            component: TableSort
+                        }
+                    ]
+                },{
+                    name: '空氣品質監控',
+                    path: '/aqi',
+                    component: AQI
+                },{
+                    name: '登入',
+                    path: '/login',
+                    component: Login
+                },
+            ]
+        },
     ]
 })

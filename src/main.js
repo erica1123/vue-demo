@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios' // 主要 AJAX 套件
 import VueAxios from 'vue-axios' // 將它轉為 Vue 的套件
+import 'bootstrap'
 
 // FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -43,8 +44,9 @@ router.beforeEach( (to, from, next) => {
     axios.post( url ).then( res => {
       if (res.data.success) {
         next()
+        // console.log(res)
       } else {
-        alert('請先登入')
+        console.log('需登入')
         next({
           path: '/login'
         })

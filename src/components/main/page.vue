@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Navs from './navs'
+import Navs from '../pages/navs'
 
 export default {
   name: 'page',

@@ -45,9 +45,9 @@ export default {
   
       this.axios.post( url, vm.user ).then( res => {
         if (res.data.success) {
-          vm.$router.push('/product')
           vm.msg = res.data.message
           localStorage.setItem('status', JSON.stringify(vm.msg))
+          vm.$router.push('/admin')
         } else {
           vm.msg = res.data.message
         }
@@ -59,7 +59,7 @@ export default {
       const vm = this
       this.axios.post( url ).then( res => {
         if (res.data.success) {
-          vm.msg = '未登入'
+          vm.msg = '已登出'
           localStorage.setItem('status', JSON.stringify(vm.msg))
         }
       })
