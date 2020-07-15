@@ -30,13 +30,13 @@ export default new VueRouter({
             redirect: '/login'
         },{
             // name: '儀表板',
-            path: '',
+            path: '/admin',
             component: Dashboard,
             // meta: { requireAuth: true }, // 導航守衛
             children: [
                 {
                     name: '產品頁',
-                    path: '/admin',
+                    path: '',
                     component: Prod,
                     meta: { requireAuth: true }, // 導航守衛
                 }
