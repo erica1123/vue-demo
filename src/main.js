@@ -20,8 +20,10 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 dom.watch()
 
 Vue.use(VueAxios, axios)
-Vue.prototype.$axios = axios
+// Vue.prototype.$axios = axios
 // axios.defaults.withCredentials = true
+
+// 關閉 build 模式下跳出的提示
 Vue.config.productionTip = false
 
 

@@ -47,7 +47,7 @@ export default {
         if (res.data.success) {
           vm.msg = res.data.message
           localStorage.setItem('status', JSON.stringify(vm.msg))
-          vm.$router.push('/admin')
+          vm.$router.push('/admin/products')
         } else {
           vm.msg = res.data.message
         }

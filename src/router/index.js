@@ -32,11 +32,11 @@ export default new VueRouter({
             // name: '儀表板',
             path: '/admin',
             component: Dashboard,
-            // meta: { requireAuth: true }, // 導航守衛
+            meta: { requireAuth: true }, // 導航守衛
             children: [
                 {
                     name: '產品頁',
-                    path: '',
+                    path: '/admin/products',
                     component: Prod,
                     meta: { requireAuth: true }, // 導航守衛
                 }
