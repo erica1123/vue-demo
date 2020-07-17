@@ -13,13 +13,21 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
 import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { dom } from '@fortawesome/fontawesome-svg-core'
 
-library.add(faAngleUp, fasStar, farStar)
+// vue-loading-overlay
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
+library.add(faAngleUp, fasStar, farStar, faSpinner, faCheckCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 dom.watch()
 
+
 Vue.use(VueAxios, axios)
+Vue.component('Loading', Loading)
 // Vue.prototype.$axios = axios
 // axios.defaults.withCredentials = true
 

@@ -1,5 +1,7 @@
 <template>
   <div class="product">
+    <loading :active.sync="isLoading"></loading>
+
     <button type="button" class="btn btn-primary mb-4 float-right" @click="openModal(true)">新增商品</button>
     <table class="table">
       <thead class="thead-light">
@@ -60,12 +62,13 @@
                 <div class="form-group">
                   <label for="customFile">
                     或 上傳圖片
-                    <i class="fas fa-spinner fa-spin"></i>
+                    <i class="fas fa-spinner fa-pulse" v-if="status.fileUploading == 'loading'"></i>
+                    <i class="fa fa-check-circle" v-if="status.fileUploading == 'done'"></i>
                   </label>
-                  <input type="file" id="customFile" class="form-control" ref="files" />
+                  <input type="file" id="customFile" class="form-control" ref="files"
+                    @change="uploadFile"/>
                 </div>
                 <img
-                  img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
                   :src="tempProduct.imageUrl"
                   class="img-fluid"
                 />
@@ -170,7 +173,11 @@ export default {
       status: JSON.parse(localStorage.getItem("status")),
       msg: "",
       tempProduct: {},
-      isNew: false
+      isNew: false,
+      isLoading: false,
+      status: {
+        fileUploading: 'default'
+      }
     };
   },
   created() {
@@ -182,8 +189,10 @@ export default {
       const vm = this
       const api = process.env.API_PATH;
       const url = `${api}/api/${process.env.CUSTOM_PATH}/products/`
+      vm.isLoading = true
       this.axios.get(url).then(res => {
         vm.data = res.data.products
+        vm.isLoading = false
         // console.log(vm.data)
       })
     },
@@ -221,7 +230,7 @@ export default {
       })
     },
     openDelModal(item) {
-      this.tempProducts = item
+      this.tempProduct = item
       console.log(item.title)
       $('#deleteProductModal').modal('show')
       
@@ -231,16 +240,43 @@ export default {
       const api = process.env.API_PATH;
       const url = `${api}/api/${process.env.CUSTOM_PATH}/admin/product/${vm.tempProduct.id}`
       this.axios.delete( url ).then( res => {
-        // vm.data = res.data.products
-        // if (res.data.success) {
-        //   $("#deleteProductModal").modal("hide");
-        //   vm.getProduct()
-        // } else {
-        //   $("#deleteProductModal").modal("hide");
-        //   vm.getProduct()
-        // }
-
+        vm.data = res.data.products
+        if (res.data.success) {
+          $("#deleteProductModal").modal("hide");
+          vm.getProduct()
+        } else {
+          $("#deleteProductModal").modal("hide");
+          vm.getProduct()
+        }
         console.log(res.data)
+      })
+    },
+    uploadFile() {
+      const vm = this
+      const uploadFile = this.$refs.files.files[0]
+      const formData = new FormData()
+      const api = process.env.API_PATH;
+      const url = `${api}/api/${process.env.CUSTOM_PATH}/admin/upload`
+      formData.append('file-to-upload', uploadFile)
+
+      vm.status.fileUploading = 'loading'
+      console.log(vm.status.fileUploading)
+
+      this.axios.post( url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then( res => {
+
+        if( res.data.success ) {
+          // vm.tempProduct.imageUrl = res.data.imageUrl
+          vm.$set(vm.tempProduct, 'imageUrl', res.data.imageUrl)
+
+          vm.status.fileUploading = 'done'
+          console.log(vm.status.fileUploading)
+        }
+        
+        // console.log(res.data)
       })
     }
   }
