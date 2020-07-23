@@ -16,8 +16,8 @@
       <tbody v-for="item in data" :key="item.id">
         <td class="text-center">{{ item.category }}</td>
         <td>{{ item.title }}</td>
-        <td>{{ item.origin_price }}</td>
-        <td>{{ item.price }}</td>
+        <td>{{ item.origin_price | currency }}</td>
+        <td>{{ item.price | currency }}</td>
         <td class="text-center">
           <span v-if="item.is_enabled" class="text-success">啟用</span>
           <span v-else>未啟用</span>

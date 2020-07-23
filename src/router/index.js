@@ -18,7 +18,7 @@ import TableSort from '@/components/pages/sort'
 
 // Dashboard
 import Prod from '@/components/dashboard/prod'
-
+import Order from '@/components/dashboard/order'
 
 
 Vue.use(VueRouter)
@@ -32,13 +32,18 @@ export default new VueRouter({
             // name: '儀表板',
             path: '/admin',
             component: Dashboard,
-            meta: { requireAuth: true }, // 導航守衛
+            // meta: { requireAuth: true }, // 導航守衛
             children: [
                 {
                     name: '產品頁',
                     path: '/admin/products',
                     component: Prod,
                     meta: { requireAuth: true }, // 導航守衛
+                },
+                {
+                    name: '模擬訂單',
+                    path: '/admin/order',
+                    component: Order,
                 }
             ]
         },{
