@@ -14,10 +14,6 @@
 import Navbar from './dashboard/navbar'
 import Sidebar from './dashboard/sidebar'
 
-import Vue from 'vue'
-import axios from 'axios'
-axios.defaults.withCredentials = true
-
 export default {
     name: 'Dashboard',
     components: {

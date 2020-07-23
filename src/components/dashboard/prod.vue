@@ -32,6 +32,11 @@
         </td>
       </tbody>
     </table>
+    <Pagination :pagination="pages" @getPages="getProduct"/>
+    <!-- 
+      getPages: 元件內自訂方法
+      pagination: 元件內自訂變數
+    -->
 
     <!-- Modal -->
     <div
@@ -164,15 +169,20 @@
 
 <script>
 import $ from "jquery";
+import Pagination from './pagination'
 
 export default {
   name: "product",
+  components: {
+    Pagination
+  },
   data() {
     return {
       data: [],
       status: JSON.parse(localStorage.getItem("status")),
       msg: "",
       tempProduct: {},
+      pages: {},
       isNew: false,
       isLoading: false,
       status: {
@@ -185,14 +195,15 @@ export default {
     this.msg = this.status || "狀態訊息";
   },
   methods: {
-    getProduct() {
+    getProduct(page = 1) {
       const vm = this
       const api = process.env.API_PATH;
-      const url = `${api}/api/${process.env.CUSTOM_PATH}/products/`
+      const url = `${api}/api/${process.env.CUSTOM_PATH}/products?page=${page}`
       vm.isLoading = true
       this.axios.get(url).then(res => {
-        vm.data = res.data.products
         vm.isLoading = false
+        vm.data = res.data.products
+        vm.pages = res.data.pagination
         // console.log(vm.data)
       })
     },
