@@ -30,9 +30,9 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-            <router-link class="nav-link" to="/admin/order">
+            <router-link class="nav-link" to="/order">
                 <span data-feather="home"></span>
-                <i class="fa fa-eye"></i>
+                <i class="fa fa-shopping-cart"></i>
                 模擬訂單
                 <span class="sr-only">(current)</span>
             </router-link>

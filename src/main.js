@@ -16,22 +16,22 @@ import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { dom } from '@fortawesome/fontawesome-svg-core'
 
 // vue-loading-overlay
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 
-library.add(faAngleUp, fasStar, farStar, faSpinner, faCheckCircle, faBoxOpen, faEye)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+// library.add(faAngleUp, fasStar, farStar, faSpinner, faCheckCircle, faBoxOpen, faShoppingCart)
+// Vue.component('font-awesome-icon', FontAwesomeIcon)
 dom.watch()
 
 
 Vue.use(VueAxios, axios)
 Vue.component('Loading', Loading)
-Vue.prototype.$axios = axios
-// axios.defaults.withCredentials = true
+// Vue.prototype.$axios = axios
+axios.defaults.withCredentials = true
 
 // 關閉 build 模式下跳出的提示
 Vue.config.productionTip = false

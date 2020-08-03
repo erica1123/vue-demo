@@ -42,7 +42,7 @@ export default new VueRouter({
                 },
                 {
                     name: '模擬訂單',
-                    path: '/admin/order',
+                    path: '/order',
                     component: Order,
                 }
             ]
