@@ -187,7 +187,7 @@ export default {
       isLoading: false,
       status: {
         fileUploading: 'default'
-      }
+      },
     };
   },
   created() {
@@ -204,7 +204,6 @@ export default {
         vm.isLoading = false
         vm.data = res.data.products
         vm.pages = res.data.pagination
-        // console.log(vm.data)
       })
     },
     openModal(isNew, item) {
