@@ -180,7 +180,6 @@ export default {
     return {
       data: [],
       status: JSON.parse(localStorage.getItem("status")),
-      msg: "",
       tempProduct: {},
       pages: {},
       isNew: false,
@@ -191,8 +190,7 @@ export default {
     };
   },
   created() {
-    this.getProduct();
-    this.msg = this.status || "狀態訊息";
+    this.getProduct()
   },
   methods: {
     getProduct(page = 1) {

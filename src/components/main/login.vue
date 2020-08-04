@@ -30,14 +30,27 @@ export default {
         username: '',
         password: '' 
       },
-      status: JSON.parse(localStorage.getItem('status')) || '狀態訊息',
-      msg: ''
+      msg: '' || '狀態訊息',
     }
   },
   created (){
-    this.msg = this.status
+    this.check()
   },
   methods: {
+    check() {
+      const vm = this
+      const api = process.env.API_PATH;
+      const url = `${api}/api/user/check`
+      this.axios.post( url ).then( res => {
+        if (res.data.success) {
+          vm.msg = '登入中'
+        } else {
+          vm.msg = res.data.message
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     signin() {
       const api = process.env.API_PATH
       const url = `${api}/admin/signin`
@@ -45,11 +58,7 @@ export default {
   
       this.axios.post( url, vm.user ).then( res => {
         if (res.data.success) {
-          vm.msg = res.data.message
-          localStorage.setItem('status', JSON.stringify(vm.msg))
           vm.$router.push('/admin/products')
-        } else {
-          vm.msg = res.data.message
         }
       })
     },
@@ -58,10 +67,7 @@ export default {
       const url = `${api}/logout`
       const vm = this
       this.axios.post( url ).then( res => {
-        if (res.data.success) {
-          vm.msg = '已登出'
-          localStorage.setItem('status', JSON.stringify(vm.msg))
-        }
+        console.log(res.data.message)
       })
     }
   },

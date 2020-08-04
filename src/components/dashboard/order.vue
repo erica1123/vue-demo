@@ -13,9 +13,9 @@
                     </h5>
                     <p class="card-text">{{ item.content }}</p>
                     <div class="d-flex justify-content-between align-items-baseline">
-                        <!-- <div class="h5" v-if="!item.price">{{ item.origin_price }}</div> -->
-                        <del class="h6" v-if="!item.price">原價 {{ item.origin_price }} 元</del>
-                        <div class="h5" v-if="item.price">現在只要 {{ item.price }}元</div>
+                        <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
+                        <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+                        <div class="h5" v-if="item.price">現在只要 {{ item.price }} 元</div>
                     </div>
                 </div>
                 <div class="card-footer d-flex">
@@ -125,16 +125,14 @@ export default {
             const api = process.env.API_PATH;
             const url = `${api}/api/${process.env.CUSTOM_PATH}/cart`
             vm.status.loadingItem = id
-            this.axios({
-                method: 'post',
-                url,
-                data: {
-                    product_id: id,
-                    qty,
-                },
-            }).then( res => {
-                console.log(res, res.data.message, res.data.product.id)
+            const cart = {
+                product_id: id,
+                qty,
+            }
+            this.axios.post(url, {data: cart}).then( res => {
+                console.log(res.data.message)
                 vm.status.loadingItem = ''
+                $('#productModal').modal('hide')
             }).catch( err => {
                 console.log(err)
             })

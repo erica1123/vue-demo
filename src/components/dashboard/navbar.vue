@@ -29,7 +29,7 @@ export default {
     return {
       data: [],
       status: JSON.parse(localStorage.getItem('status')),
-      msg: ''
+      msg: '' || '狀態訊息',
     }
   },
   created (){
@@ -38,18 +38,30 @@ export default {
     this.axios.get( url ).then( res => {
       this.data.push(...res.data.products)
     })
-    this.msg = this.status || '狀態訊息'
+    this.check()
     
   },
   methods: {
+     check() {
+      const vm = this
+      const api = process.env.API_PATH;
+      const url = `${api}/api/user/check`
+      this.axios.post( url ).then( res => {
+        if (res.data.success) {
+          vm.msg = '登入中'
+        } else {
+          vm.msg = res.data.message
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     signout() {
       const api = process.env.API_PATH
       const url = `${api}/logout`
       const vm = this
       this.axios.post( url ).then( res => {
         if (res.data.success) {
-          vm.msg = '已登出'
-          localStorage.setItem('status', JSON.stringify(vm.msg))
           vm.$router.push('/login')
         }
       })
