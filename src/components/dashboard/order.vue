@@ -24,8 +24,9 @@
                         <i class="fas fa-spinner fa-spin" v-if="item.id === status.loadingItem"></i>
                         查看更多
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addtoCart(item.id)">
-                        <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                    <button type="button" class="btn btn-outline-danger btn-sm ml-auto" 
+                    @click="addtoCart(item.id)">
+                        <i class="fas fa-spinner fa-spin" v-if="item.id === status.loadingItem"></i>
                         加到購物車
                     </button>
                 </div>
@@ -79,7 +80,6 @@
 
 <script>
 import $ from 'jquery'
-
 export default {
     name: 'order',
     data() {
@@ -122,16 +122,18 @@ export default {
         },
         addtoCart(id, qty = 1) {
             const vm = this
-            const cors = 'https://cors-anywhere.herokuapp.com/'
             const api = process.env.API_PATH;
             const url = `${api}/api/${process.env.CUSTOM_PATH}/cart`
             vm.status.loadingItem = id
-            const cart = {
-                product_id: id,
-                qty
-            }
-            this.axios.post(url, { data: cart }).then( res => {
-                console.log(res)
+            this.axios({
+                method: 'post',
+                url,
+                data: {
+                    product_id: id,
+                    qty,
+                },
+            }).then( res => {
+                console.log(res.data.message, res)
                 vm.status.loadingItem = ''
             }).catch( err => {
                 console.log(err)
