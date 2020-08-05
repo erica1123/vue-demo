@@ -18,6 +18,7 @@ import TableSort from '@/components/pages/sort'
 
 // Dashboard
 import Prod from '@/components/dashboard/prod'
+import Coupon from '@/components/dashboard/coupon'
 import Order from '@/components/dashboard/order'
 
 
@@ -39,8 +40,11 @@ export default new VueRouter({
                     path: '/admin/products',
                     component: Prod,
                     meta: { requireAuth: true }, // 導航守衛
-                },
-                {
+                },{
+                    name: '優惠券',
+                    path: '/admin/coupon',
+                    component: Coupon,
+                },{
                     name: '模擬訂單',
                     path: '/order',
                     component: Order,

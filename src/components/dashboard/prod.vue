@@ -118,7 +118,7 @@
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="is_enabled" 
-                      v-model="tempProduct.is_inabled"
+                      v-model="tempProduct.is_enabled"
                       :true-value="1"
                       :false-value="0"/>
                     <label class="form-check-label" for="is_enabled">是否啟用</label>
@@ -179,7 +179,6 @@ export default {
   data() {
     return {
       data: [],
-      status: JSON.parse(localStorage.getItem("status")),
       tempProduct: {},
       pages: {},
       isNew: false,
@@ -286,7 +285,7 @@ export default {
         
         // console.log(res.data)
       })
-    }
+    },
   }
 };
 </script>

@@ -18,17 +18,17 @@ export default {
     }
   },
   created (){
-    let cors = 'https://cors-anywhere.herokuapp.com/'
-    let clientID = 'L39YcRzMRt9ZweiuAsM7Pjq_jiY-N_PE5KMvlnV1sS0'
-    let api = 'https://api.unsplash.com/search/photos'
-    let url = api + '?query=cats' + '&client_id=' + clientID
+    // let cors = 'https://cors-anywhere.herokuapp.com/'
+    // let clientID = 'L39YcRzMRt9ZweiuAsM7Pjq_jiY-N_PE5KMvlnV1sS0'
+    // let api = 'https://api.unsplash.com/search/photos'
+    // let url = api + '?query=cats' + '&client_id=' + clientID
 
-    this.axios.get(url).then( res => {
-        this.data.push(res.data.results[6].urls.regular)
-        // console.log(res)
-    }).catch( err => {
-      console.log(err)
-    })
+    // this.axios.get(url).then( res => {
+    //     this.data.push(res.data.results[6].urls.regular)
+    //     // console.log(res)
+    // }).catch( err => {
+    //   console.log(err)
+    // })
   },
 }
 </script>

@@ -13,10 +13,12 @@
         <ul class="nav flex-column">
             <li class="nav-item">
             <router-link class="nav-link" to="/admin/products">
-                <span data-feather="home"></span>
                 <i class="fa fa-box-open"></i>
                 商品列表
-                <span class="sr-only">(current)</span>
+            </router-link>
+            <router-link class="nav-link" to="/admin/coupon">
+                <i class="fas fa-ticket-alt"></i>
+                優惠券
             </router-link>
             </li>
         </ul>
