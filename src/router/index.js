@@ -19,7 +19,9 @@ import TableSort from '@/components/pages/sort'
 // Dashboard
 import Prod from '@/components/dashboard/prod'
 import Coupon from '@/components/dashboard/coupon'
+import Orderlist from '@/components/dashboard/orderlist'
 import Order from '@/components/dashboard/order'
+import Checkout from '@/components/dashboard/checkout'
 
 
 Vue.use(VueRouter)
@@ -45,9 +47,17 @@ export default new VueRouter({
                     path: '/admin/coupon',
                     component: Coupon,
                 },{
+                    name: '訂單列表',
+                    path: '/admin/orderlist',
+                    component: Orderlist,
+                },{
                     name: '模擬訂單',
                     path: '/order',
                     component: Order,
+                },{
+                    name: '付款確認',
+                    path: '/checkout/:orderId',
+                    component: Checkout,
                 }
             ]
         },{

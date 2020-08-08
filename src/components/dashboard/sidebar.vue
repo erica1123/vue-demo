@@ -12,14 +12,22 @@
         </h6>
         <ul class="nav flex-column">
             <li class="nav-item">
-            <router-link class="nav-link" to="/admin/products">
-                <i class="fa fa-box-open"></i>
-                商品列表
-            </router-link>
-            <router-link class="nav-link" to="/admin/coupon">
-                <i class="fas fa-ticket-alt"></i>
-                優惠券
-            </router-link>
+                <router-link class="nav-link" to="/admin/products">
+                    <i class="fa fa-box-open"></i>
+                    商品列表
+                </router-link>
+            </li>
+            <li>
+                <router-link class="nav-link" to="/admin/coupon">
+                    <i class="fas fa-ticket-alt"></i>
+                    優惠券
+                </router-link>
+            </li>
+            <li>
+                <router-link class="nav-link" to="/admin/orderlist">
+                    <i class="fas fa-list-alt"></i>
+                    訂單列表
+                </router-link>
             </li>
         </ul>
         <h6

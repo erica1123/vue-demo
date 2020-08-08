@@ -229,10 +229,11 @@ export default {
         if (res.data.success) {
           $("#prouctdModal").modal("hide")
           vm.getProduct()
+          this.$bus.$emit("message:push", res.data.message, "success");
         } else {
           $("#prouctdModal").modal("hide")
           vm.getProduct()
-          console.log('新增失敗')
+          this.$bus.$emit("message:push", res.data.message, "danger");
         }
       })
     },
@@ -265,22 +266,20 @@ export default {
       const api = process.env.API_PATH;
       const url = `${api}/api/${process.env.CUSTOM_PATH}/admin/upload`
       formData.append('file-to-upload', uploadFile)
-
       vm.status.fileUploading = 'loading'
-      console.log(vm.status.fileUploading)
-
       this.axios.post( url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then( res => {
-
         if( res.data.success ) {
           // vm.tempProduct.imageUrl = res.data.imageUrl
           vm.$set(vm.tempProduct, 'imageUrl', res.data.imageUrl)
-
-          vm.status.fileUploading = 'done'
-          console.log(vm.status.fileUploading)
+          vm.status.fileUploading = ''
+          console.log(res)
+          this.$bus.$emit("message:push", '上傳圖片成功', "success");
+        } else {
+          this.$bus.$emit("message:push", res.data.message, "danger");
         }
         
         // console.log(res.data)

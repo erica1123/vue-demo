@@ -6,6 +6,7 @@ import router from './router'
 import axios from 'axios' // 主要 AJAX 套件
 import VueAxios from 'vue-axios' // 將它轉為 Vue 的套件
 import 'bootstrap'
+import './bus'
 
 // FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -18,6 +19,23 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { dom } from '@fortawesome/fontawesome-svg-core'
+
+// VeeVakudate 3
+import VeeValidate from 'vee-validate'
+import zhTW from 'vee-validate/dist/locale/zh_TW'
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n)
+
+const i18n = new VueI18n({
+  locale: 'zhTW'
+})
+Vue.use(VeeValidate, {
+  events: 'input|blur', // 為了讓使用者離開該欄位時觸發驗證
+  i18n,
+  dictionary: {
+    zhTW
+  }
+})
 
 // vue-loading-overlay
 import Loading from 'vue-loading-overlay'
@@ -39,6 +57,7 @@ Vue.config.productionTip = false
 // 價錢 Filter
 import currencyFilter from '@/components/filters/currency.js'
 Vue.filter('currency', currencyFilter)
+
 
 
 /* eslint-disable no-new */
